@@ -1,8 +1,6 @@
 import pygame
-<<<<<<< HEAD
 from pygame.locals import *
 from timeit import default_timer as timer
-=======
 import math
 import random
 
@@ -33,7 +31,7 @@ TITLE_FONT = pygame.font.SysFont('comicsans', 70)
 images = []
 for i in range(7):
     
-    image = pygame.image.load("/home/prasanth/c/python/project/image/hangman" + str(i) + ".png")
+    image = pygame.image.load("C:/Users/jsbhu/OneDrive/Desktop/python-project/hangman" + str(i) + ".png")
     images.append(image)
 
 # game variables
@@ -146,4 +144,3 @@ def main():
 while True:
     main()
 pygame.quit()
->>>>>>> 2f0e79e7b161912a1a7f4b69701d4a781248af0b
