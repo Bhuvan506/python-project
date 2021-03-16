@@ -8,6 +8,24 @@ WIDTH, HEIGHT = 800, 500
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hangman Game!")
 
+def button(word,x,y,w,h,ic,ac,action=None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    if x+w > mouse[0] > x and y+h > mouse[1] > y:
+        pygame.draw.rect(screen,ac,(x,y,w,h))
+        if click[0] == 1 and action != None:
+            action()
+    else:
+        pygame.draw.rect(screen,ic,(x,y,w,h))
+
+    buttonText = pygame.font.Font("freesansbold.ttf",20)
+    buttonTextSurf = buttonText.render(word, True, white)
+    buttonTextRect = buttonTextSurf.get_rect()
+    buttonTextRect.center = ((x+(w/2)), (y+(h/2)))
+    screen.blit(buttonTextSurf, buttonTextRect)
+
+
 # button variables
 RADIUS = 20
 GAP = 15
@@ -119,8 +137,46 @@ def main():
         if hangman_status == 6:
             display_message("You LOST!")
             break
-    
+
+
+def Animals():
+    animal = ['cow', 'dog', 'cat', 'pig', 'zebra', 'bird', 'giraffe', 'lion', 'tiger', 'penguin', 'hamster', 'fox',
+              'panda', 'bear', 'cheetah', 'ostrich', 'meerkat', 'whale', 'shark', 'horse', 'monkey', 'octopus',
+              'kitten', 'kangaroo', 'chicken', 'fish', 'rabbit', 'sheep']
+    print("animal")
+    title = "Animals"
+    hangmanGame(animal, title)
+
+
+def Vehicles():
+    vehicle = ['car', 'bus', 'train', 'airplane', 'plane', 'ship', 'jet', 'boat', 'lorry', 'tractor', 'bike',
+               'motorbike', 'tram', 'van', 'ambulance', 'fire engine', 'rocket', 'taxi', 'caravan', 'coach', 'lorry',
+               'scooter', 'sleigh', 'tank', 'wagon', 'spaceship']
+    print("vehicle")
+    title = "Vehicles"
+    hangmanGame(vehicle, title)
+
+
+def Foods():
+    food = ['apple', 'banana', 'orange', 'peach', 'pizza', 'donut', 'chips', 'sandwich', 'cookie', 'cucumber', 'carrot',
+            'sweetcorn', 'ice cream', 'pancake', 'bread', 'potato', 'tomato', 'nuts', 'yogurt', 'pasta', 'rice',
+            'cheese', 'soup', 'fish', 'egg', 'meat', 'ham', 'sausage']
+    print("food")
+    title = "Foods"
+    hangmanGame(food, title)
+
+
+def Sports():
+    sport = ['rugby', 'football', 'netball', 'basketball', 'swimming', 'hockey', 'curling', 'running', 'golf', 'tennis',
+             'badmington', 'archery', 'volleyball', 'bowling', 'dancing', 'gym', 'skating', 'baseball', 'rounders',
+             'boxing', 'climbing', 'canoe', 'cycling', 'fencing', 'karate', 'shooting', 'cricket']
+    print("sport")
+    title = "Sports"
+    hangmanGame(sport, title)
+
+
 while True:
-    
     main()
+
 pygame.quit()
+sys.exit()

@@ -50,11 +50,11 @@ def endGame():
                 pygame.quit()
                 sys.exit()
                 
-        button("Yes",(width/2)-50,420,100,50,darklightred,lightred,quitGame)
-        button("No",(width/2)-50,500,100,50,darklightred,lightred,hangman)
+        button("Yes",(width/2)-25,420,100,50,darklightred,lightred,hangman)
+        button("No",(width/2)-25,490,100,50,darklightred,lightred,quitGame)
         
-        largeText = pygame.font.SysFont("comicsansms",115)
-        TextSurf = largeText.render("End Game?",True,darklightred)
+        largeText = pygame.font.SysFont("comicsansms",70)
+        TextSurf = largeText.render("Continue To Next Level?",True,darklightred)
         TextRect = TextSurf.get_rect()
         TextRect.center = (width / 2, height / 2)
         screen.blit(TextSurf, TextRect)
@@ -92,7 +92,7 @@ def pause():
         
 
         button("Continue",150,450,100,50,darklightred,lightred,unpause)
-        button("Quit",550,450,100,50,darklightblue,lightblue,quitgame)
+        button("Quit",550,450,100,50,darklightblue,lightblue,quitGame)
 
         pygame.display.update()
         clock.tick(fps)
