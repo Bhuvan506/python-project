@@ -6,7 +6,7 @@ import random
 
 # setup display
 pygame.init()
-WIDTH, HEIGHT = 800, 500
+WIDTH, HEIGHT = 1000, 600
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hangman Game!")
 
@@ -53,8 +53,10 @@ def draw():
     # draw title
     text = TITLE_FONT.render("HANGMAN", 1, BLACK)
     name = WORD_FONT.render("level "+str(level),1, BLACK)
+    chances = WORD_FONT.render("chances:"+str(6-hangman_status),1, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
     win.blit(name,(WIDTH/2 - text.get_width()/2 + 80,60))
+    win.blit(chances,(WIDTH/2 - text.get_width()/2 + 40,100))
 
     # draw word
     display_word = ""
@@ -125,6 +127,16 @@ def main():
             level += 1
             if level == 4:
                 display_message("You are the CHAMPION")
+            if level == 3:
+                display_message("You WON!")
+                words.remove(word)
+                word= random.choice(words)
+                guessed = []
+                for letter in letters:
+                    letter[3] = True
+                hangman_status = 4
+                draw()
+                main()
             else:
                 display_message("You WON!")
                 words.remove(word)
@@ -132,6 +144,7 @@ def main():
                 guessed = []
                 for letter in letters:
                     letter[3] = True
+                hangman_status = 2
                 draw()
                 main()
             
