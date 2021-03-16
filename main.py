@@ -31,7 +31,7 @@ TITLE_FONT = pygame.font.SysFont('comicsans', 70)
 images = []
 for i in range(7):
     
-    image = pygame.image.load("C:/Users/jsbhu/OneDrive/Desktop/python-project/hangman" + str(i) + ".png")
+    image = pygame.image.load("/home/prasanth/c/python/project/image/hangman" + str(i) + ".png")
     images.append(image)
 
 # game variables
@@ -127,6 +127,7 @@ def main():
             level += 1
             if level == 4:
                 display_message("You are the CHAMPION")
+                pygame.quit()
             if level == 3:
                 display_message("You WON!")
                 words.remove(word)
