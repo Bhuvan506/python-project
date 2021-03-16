@@ -1,6 +1,6 @@
 import pygame
-from pygame.locals import *
-from timeit import default_timer as timer
+# from pygame.locals import *
+# from timeit import default_timer as timer
 import math
 import random
 
@@ -43,20 +43,20 @@ level = 1
 
 
 # colors
-WHITE = (255,255,255)
-BLACK = (0,0,0)
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
 
 def draw():
     win.fill(WHITE)
     global level
     # draw title
-    text = TITLE_FONT.render("HANGMAN", 1, BLACK)
-    name = WORD_FONT.render("level "+str(level),1, BLACK)
-    chances = WORD_FONT.render("chances:"+str(6-hangman_status),1, BLACK)
+    text = TITLE_FONT.render("HANGMAN", True, BLACK)
+    name = WORD_FONT.render("level "+str(level), True, BLACK)
+    chances = WORD_FONT.render("chances:"+str(6-hangman_status), True, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
-    win.blit(name,(WIDTH/2 - text.get_width()/2 + 80,60))
-    win.blit(chances,(WIDTH/2 - text.get_width()/2 + 40,100))
+    win.blit(name, (WIDTH/2 - text.get_width()/2 + 80, 60))
+    win.blit(chances, (WIDTH/2 - text.get_width()/2 + 40, 100))
 
     # draw word
     display_word = ""
@@ -65,16 +65,16 @@ def draw():
             display_word += letter + " "
         else:
             display_word += "_ "
-    text = WORD_FONT.render(display_word, 1, BLACK)
+    text = WORD_FONT.render(display_word, True, BLACK)
     win.blit(text, (400, 200))
 
     # draw buttons
     for letter in letters:
-        x, y, ltr, visible = letter
+        xx, yy, ltr, visible = letter
         if visible:
-            pygame.draw.circle(win, BLACK, (x, y), RADIUS, 3)
-            text = LETTER_FONT.render(ltr, 1, BLACK)
-            win.blit(text, (x - text.get_width()/2, y - text.get_height()/2))
+            pygame.draw.circle(win, BLACK, (xx, yy), RADIUS, 3)
+            text = LETTER_FONT.render(ltr, True, BLACK)
+            win.blit(text, (xx - text.get_width()/2, yy - text.get_height()/2))
 
     win.blit(images[hangman_status], (150, 100))
     pygame.display.update()
@@ -83,13 +83,14 @@ def draw():
 def display_message(message):
     pygame.time.delay(500)
     win.fill(WHITE)
-    text = WORD_FONT.render(message, 1, BLACK)
+    text = WORD_FONT.render(message, True, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, HEIGHT/2 - text.get_height()/2))
     pygame.display.update()
     pygame.time.delay(1500)
 
+
 def main():
-    FPS = 60
+    fps = 60
     clock = pygame.time.Clock()
     run = True
     global word
@@ -97,7 +98,7 @@ def main():
     global hangman_status
     global level
     while run:
-        clock.tick(FPS)
+        clock.tick(fps)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -106,9 +107,9 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 m_x, m_y = pygame.mouse.get_pos()
                 for letter in letters:
-                    x, y, ltr, visible = letter
+                    xx, yy, ltr, visible = letter
                     if visible:
-                        dis = math.sqrt((x - m_x)**2 + (y - m_y)**2)
+                        dis = math.sqrt((xx - m_x)**2 + (yy - m_y)**2)
                         if dis < RADIUS:
                             letter[3] = False
                             guessed.append(ltr)
@@ -125,12 +126,12 @@ def main():
         
         if won:
             level += 1
-            if level == 4:
+            if level == 5:
                 display_message("You are the CHAMPION")
             if level == 3:
                 display_message("You WON!")
                 words.remove(word)
-                word= random.choice(words)
+                word = random.choice(words)
                 guessed = []
                 for letter in letters:
                     letter[3] = True
@@ -140,7 +141,7 @@ def main():
             else:
                 display_message("You WON!")
                 words.remove(word)
-                word= random.choice(words)
+                word = random.choice(words)
                 guessed = []
                 for letter in letters:
                     letter[3] = True
@@ -153,7 +154,8 @@ def main():
         if hangman_status == 6:
             display_message("You LOST!")
             pygame.quit()
-    
+
+
 while True:
     main()
-pygame.quit()
+# pygame.quit()
