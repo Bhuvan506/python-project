@@ -4,6 +4,7 @@ from timeit import default_timer as timer
 import math
 import sys
 import random
+import os
 from timeit import default_timer as timer
 
 FPS = 30
@@ -60,9 +61,10 @@ GREY = (192, 192, 192)
 hangman_status = 0
 level = 1
 score = 0
-LOSING_SOUND = pygame.mixer.Sound("C:/Users/jsbhu/OneDrive/Desktop/python-project/losing.wav")
-WINNING_SOUND = pygame.mixer.Sound("C:/Users/jsbhu/OneDrive/Desktop/python-project/winning.wav")
-pygame.mixer.music.load("C:/Users/jsbhu/OneDrive/Desktop/python-project/drums.wav")
+directory = os.getcwd()
+LOSING_SOUND = pygame.mixer.Sound(directory + "/losing.wav")
+WINNING_SOUND = pygame.mixer.Sound(directory + "/winning.wav")
+pygame.mixer.music.load(directory + "/drums.wav")
 
 
 def hangman():
