@@ -34,8 +34,8 @@ words = ['CAR', 'BUS', 'VAN', 'TAXI', 'SHIP', 'TANK', 'BOAT', 'BIKE', 'TRAM', 'T
          'WAGON', 'CYCLE', 'PLANE', 'LORRY', 'TRUCK', 'SCOOTER', 'SLEIGH', 'ROCKET', 'CARAVAN', 'TRACTOR',
          'AIRPLANE', 'MOTORBIKE',   'AMBULANCE', 'FIRE ENGINE',  'SPACESHIP']
 # words = ['car', 'bus', 'van', 'taxi', 'ship', 'tank', 'boat', 'bike', 'tram', 'train', 'wagon', 'coach', 'plane',
-         'lorry', 'ring', 'scooter', 'sleigh', 'rocket', 'caravan', 'tractor', 'airplane', 'motorbike',   'ambulance',
-         'fire engine',  'spaceship']
+#          'lorry', 'ring', 'scooter', 'sleigh', 'rocket', 'caravan', 'tractor', 'airplane', 'motorbike',   'ambulance',
+#         'fire engine',  'spaceship']
 guessed = []
 level = 1
 word = random.choice(words)
@@ -71,7 +71,6 @@ def draw():
     win.blit(chances, (WIDTH/2 - text.get_width()/2 + 40, 100))
 
     # draw word
-    print(word)
     display_word = ""
     for letter in word:
         if letter in guessed:
