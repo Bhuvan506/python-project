@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from timeit import default_timer as timer
 import math
+import sys
 import random
 from timeit import default_timer as timer
 
@@ -38,7 +39,7 @@ def button(word, x, y, w, h, ic, ac, action=None):
         pygame.draw.rect(win, ic, (x, y, w, h))
 
     buttonText = pygame.font.Font("freesansbold.ttf", 20)
-    buttonTextSurf = buttonText.render(word, True, WHITE)
+    buttonTextSurf = buttonText.render(word, 1, WHITE)
     buttonTextRect = buttonTextSurf.get_rect()
     buttonTextRect.center = ((x+(w/2)), (y+(h/2)))
     win.blit(buttonTextSurf, buttonTextRect)
@@ -64,23 +65,28 @@ pygame.mixer.music.load("C:/Users/jsbhu/OneDrive/Desktop/python-project/drums.wa
 
 
 def hangman():
-    clock = pygame.time.Clock()
-    win.fill(WHITE)
-    textBoxSpace = 5
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+        clock = pygame.time.Clock()
+        win.fill(WHITE)
+        textBoxSpace = 5
 
-    text = pygame.font.Font("freesansbold.ttf", 20)
-    textSurf = text.render("Choose a category", True, BLACK)
-    textRect = textSurf.get_rect()
-    textRect.center = ((WIDTH / 2), (HEIGHT / 2))
-    win.blit(textSurf, textRect)
+        text = pygame.font.Font("freesansbold.ttf", 20)
+        textSurf = text.render("Choose a category", 1, BLACK)
+        textRect = textSurf.get_rect()
+        textRect.center = ((WIDTH / 2), (HEIGHT / 2))
+        win.blit(textSurf, textRect)
 
-    button("Animals", 200, 450, 150, 100, BLACK, GREY, animals)
-    button("Vehicles", 600, 450, 150, 100, BLACK, GREY, vehicles)
-    button("Food", 200, 50, 150, 100, BLACK, GREY, foods)
-    button("Sports", 600, 50, 150, 100, BLACK, GREY, sports)
+        button("Animals", 200, 450, 150, 100, BLACK, GREY, animals)
+        button("Vehicles", 600, 450, 150, 100, BLACK, GREY, vehicles)
+        button("Food", 200, 50, 150, 100, BLACK, GREY, foods)
+        button("Sports", 600, 50, 150, 100, BLACK, GREY, sports)
 
-    pygame.display.update()
-    clock.tick(FPS)
+        pygame.display.update()
+        clock.tick(FPS)
 
 
 def draw():
@@ -192,6 +198,7 @@ def main(lst):
             display_message("You WON!")
             pygame.mixer.music.stop()
             pygame.mixer.Sound.play(WINNING_SOUND)
+            pygame.time.delay(6000)
             words.remove(word)
             word = random.choice(words)
             guessed = []
@@ -256,4 +263,6 @@ def sports():
 
 while True:
     hangman()
+
 pygame.quit()
+exit()
