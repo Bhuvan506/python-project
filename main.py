@@ -1,6 +1,4 @@
 import pygame
-from pygame.locals import *
-from timeit import default_timer as timer
 import math
 import random
 
@@ -40,7 +38,9 @@ words = ["IDE", "REPLIT", "PYTHON", "PYGAME"]
 guessed = []
 word = random.choice(words)
 level = 1
-
+LOSING_SOUND = pygame.mixer.Sound("python/project/losing.wav")
+WINNING_SOUND = pygame.mixer.Sound("python/project/winning.wav")
+pygame.mixer.music.load("python/project/drums.wav")
 
 # colors
 WHITE = (255,255,255)
@@ -89,6 +89,7 @@ def display_message(message):
     pygame.time.delay(1500)
 
 def main():
+    pygame.mixer.music.play(-1)
     FPS = 60
     clock = pygame.time.Clock()
     run = True
@@ -127,8 +128,12 @@ def main():
             level += 1
             if level == 4:
                 display_message("You are the CHAMPION")
+                pygame.mixer.music.stop()
+                pygame.mixer.Sound.play(WINNING_SOUND)
             if level == 3:
                 display_message("You WON!")
+                pygame.mixer.music.stop()
+                pygame.mixer.Sound.play(WINNING_SOUND)
                 words.remove(word)
                 word= random.choice(words)
                 guessed = []
@@ -142,6 +147,8 @@ def main():
                     pygame.quit()
                 else:
                     display_message("You WON!")
+                    pygame.mixer.music.stop()
+                    pygame.mixer.Sound.play(WINNING_SOUND)
                     words.remove(word)
                     word= random.choice(words)
                     guessed = []
@@ -154,7 +161,10 @@ def main():
             pygame.quit()
 
         if hangman_status == 6:
+            pygame.mixer.music.stop()
+            pygame.mixer.Sound.play(LOSING_SOUND)
             display_message("You LOST!")
+
             pygame.quit()
     
 while True:
