@@ -239,34 +239,34 @@ def main(lst):
 
 
 def animals():
-    animal = [['cow', 'dog', 'cat', 'pig', 'fox'], ['lion', 'bird', 'bear', 'panda', 'horse'],
-              ['zebra', 'whale', 'tiger', 'shark', 'chicken'], ['giraffe', 'penguin', 'hamster', 'cheetah', 'ostrich'],
-              ['meerkat', 'monkey', 'octopus', 'kitten', 'kangaroo']]
+    animal = [['COW', 'DOG', 'CAT', 'PIG', 'FOX'], ['LION', 'BIRD', 'BEAR', 'PANDA', 'HORSE'],
+              ['ZEBRA', 'WHALE', 'TIGER', 'SHARK', 'CHICKEN'], ['GIRAFFE', 'PENGUIN', 'HAMSTER', 'CHEETAH', 'OSTRICH'],
+              ['MEERKAT', 'MONKEY', 'OCTOPUS', 'KITTEN', 'KANGAROO']]
 
     print("animal")
     main(animal)
 
 
 def vehicles():
-    vehicle = [['car', 'bus', 'van', 'taxi', 'ship'], ['tank', 'boat', 'bike', 'tram', 'train'],
-              ['wagon', 'coach', 'plane', 'lorry', 'lorry'], ['scooter', 'sleigh', 'rocket', 'caravan', 'tractor'],
-              ['airplane', 'motorbike',   'ambulance', 'fire engine',  'spaceship']]
+    vehicle = [['CAR', 'BUS', 'VAN', 'TAXI', 'SHIP'], ['TANK', 'BOAT', 'BIKE', 'TRAM', 'TRAIN'],
+              ['WAGON', 'COACH', 'PLANE', 'LORRY', 'CYCLE'], ['SCOOTER', 'SLEIGH', 'ROCKET', 'CARAVAN', 'TRACTOR'],
+              ['AIRPLANE', 'MOTORBIKE',   'AMBULANCE', 'FIRE ENGINE',  'SPACESHIP']]
     print("vehicle")
     main(vehicle)
 
 
 def foods():
-    food = [['rice', 'cheese', 'soup', 'fish', 'egg'], ['bread', 'nuts', 'apple', 'pasta', 'pizza'],
-            ['chips', 'carrot', 'orange', 'peach', 'donut'], ['banana',  'cookie', 'potato', 'tomato', 'yogurt'],
-            ['ice cream', 'pancake',   'cucumber', 'sweetcorn', 'sandwich']]
+    food = [['RICE', 'CHEESE', 'SOUP', 'FISH', 'EGG'], ['BREAD', 'NUTS', 'APPLE', 'PASTA', 'PIZZA'],
+            ['CHIPS', 'CARROT', 'ORANGE', 'PEACH', 'DONUT'], ['BANANA',  'COOKIE', 'POTATO', 'TOMATO', 'YOGURT'],
+            ['ICE CREAM', 'PANCAKE',   'CUCUMBER', 'SWEETCORN', 'SANDWICH']]
     print("food")
     main(food)
 
 
 def sports():
-    sport = [['rugby', 'golf', 'karate', 'tennis', 'cricket'], ['football', 'netball', 'basketball', 'swimming',
-              'curling'], ['running', 'badminton', 'archery', 'volleyball', 'bowling'], ['dancing', 'skating',
-              'baseball', 'rounders', 'boxing'], ['climbing', 'cycling', 'fencing',  'shooting', 'kabaddi']]
+    sport = [['RUGBY', 'GOLF', 'KARATE', 'TENNIS', 'CRICKET'], ['FOOTBALL', 'NETBALL', 'BASKETBALL', 'SWIMMING',
+              'CURLING'], ['RUNNING', 'BADMINTON', 'ARCHERY', 'VOLLEYBALL', 'BOWLING'], ['DANCING', 'SKATING',
+              'BASEBALL', 'ROUNDERS', 'BOXING'], ['CLIMBING', 'CYCLING', 'FENCING',  'SHOOTING', 'KABADDI']]
     print("sport")
     main(sport)
 
