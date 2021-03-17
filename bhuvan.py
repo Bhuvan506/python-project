@@ -195,37 +195,42 @@ def main(lst):
 
         if won:
             level += 1
-            display_message("You WON!")
-            pygame.mixer.music.stop()
-            pygame.mixer.Sound.play(WINNING_SOUND)
-            pygame.time.delay(6000)
-            words.remove(word)
-            word = random.choice(words)
-            guessed = []
-            for letter in letters:
-                letter[3] = True
             if level == 6:
+                display_message("You WON!")
                 display_message("You are the CHAMPION")
-            if level == 5:
-                hangman_status = 7
-                draw()
-                main(words)
-            elif level == 4:
-                hangman_status = 6
-                draw()
-                main(words)
-            elif level == 3:
-                hangman_status = 4
-                draw()
-                main(words)
-            elif level == 2:
-                hangman_status = 2
-                draw()
-                main(words)
-            elif level == 1:
-                hangman_status = 0
-                draw()
-                main(words)
+                pygame.mixer.music.stop()
+                pygame.mixer.Sound.play(WINNING_SOUND)
+                pygame.time.delay(6000)
+            else:
+                display_message("You WON!")
+                pygame.mixer.music.stop()
+                pygame.mixer.Sound.play(WINNING_SOUND)
+                pygame.time.delay(6000)
+                words.remove(word)
+                word = random.choice(words)
+                guessed = []
+                for letter in letters:
+                    letter[3] = True
+                if level == 5:
+                    hangman_status = 7
+                    draw()
+                    main(words)
+                elif level == 4:
+                    hangman_status = 6
+                    draw()
+                    main(words)
+                elif level == 3:
+                    hangman_status = 4
+                    draw()
+                    main(words)
+                elif level == 2:
+                    hangman_status = 2
+                    draw()
+                    main(words)
+                elif level == 1:
+                    hangman_status = 0
+                    draw()
+                    main(words)
 
             pygame.quit()
 
@@ -237,7 +242,7 @@ def main(lst):
 
 
 def animals():
-    animal = ['COW', 'LION','HORSE', 'TIGER', 'CHICKEN']
+    animal = ['COW', 'LION', 'HORSE', 'TIGER', 'CHICKEN']
 
     print("animal")
     main(animal)
@@ -250,7 +255,7 @@ def vehicles():
 
 
 def foods():
-    food = ['RICE', 'CHEESE', 'PIZZA', 'ICE CREAM', 'SWEETCORN']
+    food = ['RICE', 'CHEESE', 'PIZZA', 'BANANA', 'SWEETCORN']
     print("food")
     main(food)
 
