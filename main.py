@@ -75,7 +75,6 @@ def hangman():
                 sys.exit()
         clock = pygame.time.Clock()
         win.fill(WHITE)
-        textBoxSpace = 5
 
         text = pygame.font.Font("freesansbold.ttf", 20)
         textSurf = text.render("Choose a category", 1, BLACK)
@@ -83,7 +82,7 @@ def hangman():
         textRect.center = ((WIDTH / 2), (HEIGHT / 2))
         win.blit(textSurf, textRect)
 
-        button("Animals", 200, 450, 150, 100, BLACK, GREY, animals)
+        button("Team members", 200, 450, 150, 100, BLACK, GREY, members)
         button("PythonTAs", 600, 450, 150, 100, BLACK, GREY, pythonTAs)
         button("Subjects", 200, 50, 150, 100, BLACK, GREY, subjects)
         button("Professors", 600, 50, 150, 100, BLACK, GREY, professors)
@@ -259,22 +258,21 @@ def main(lst):
             pygame.quit()
 
 
-def animals():
-    animal = ['COW', 'LION', 'HORSE', 'TIGER', 'CHICKEN']
-
-    print("animal")
-    main(animal)
+def members():
+    member = ['MAURYA', 'KEERTHAN', 'BHUVAN', 'OISHI', 'PRASANTH']
+    print("Members in project")
+    main(member)
 
 
 def pythonTAs():
     pythonTA = ['PRATEEKSHA', 'ADVAITH', 'RAHUL', 'LUBIANA', 'KESHAV', 'ESHITHA']
-    print("pythonTAa")
+    print("PythonTAa")
     main(pythonTA)
 
 
 def subjects():
     subject = ['PYTHON', 'DIGITALDESIGN', 'MATHS', 'YOGA', 'ENGLISH']
-    print("subjects")
+    print("Subjects")
     main(subject)
 
 
