@@ -84,9 +84,9 @@ def hangman():
         win.blit(textSurf, textRect)
 
         button("Animals", 200, 450, 150, 100, BLACK, GREY, animals)
-        button("Vehicles", 600, 450, 150, 100, BLACK, GREY, vehicles)
-        button("Food", 200, 50, 150, 100, BLACK, GREY, foods)
-        button("Sports", 600, 50, 150, 100, BLACK, GREY, sports)
+        button("PythonTAs", 600, 450, 150, 100, BLACK, GREY, pythonTAs)
+        button("Subjects", 200, 50, 150, 100, BLACK, GREY, subjects)
+        button("Professors", 600, 50, 150, 100, BLACK, GREY, professors)
 
         pygame.display.update()
         clock.tick(FPS)
@@ -210,10 +210,10 @@ def main(lst):
                 display_message("Time taken: " + str(round(timetaken)) + "s")
                 score += 1000 - (round(timetaken)) * 10 + (len(set(word))-len(guessed)) * 100 + level * 50
                 display_message("You WON!")
-                display_message("Your Total Score: " + str(score))
-                display_message("You are the CHAMPION")
                 pygame.mixer.music.stop()
                 pygame.mixer.Sound.play(WINNING_SOUND)
+                display_message("Your Total Score: " + str(score))
+                display_message("You are the CHAMPION")
                 pygame.time.delay(6000)
             else:
                 timetaken = end - start
@@ -266,22 +266,22 @@ def animals():
     main(animal)
 
 
-def vehicles():
-    vehicle = ['CAR', 'BUS', 'TRAIN', 'CYCLE', 'AIRPLANE']
-    print("vehicle")
-    main(vehicle)
+def pythonTAs():
+    pythonTA = ['PRATEEKSHA', 'ADVAITH', 'RAHUL', 'LUBIANA', 'KESHAV', 'ESHITHA']
+    print("pythonTAa")
+    main(pythonTA)
 
 
-def foods():
-    food = ['RICE', 'CHEESE', 'PIZZA', 'BANANA', 'SWEETCORN']
-    print("food")
-    main(food)
+def subjects():
+    subject = ['PYTHON', 'DIGITALDESIGN', 'MATHS', 'YOGA', 'ENGLISH']
+    print("subjects")
+    main(subject)
 
 
-def sports():
-    sport = ['TENNIS', 'CRICKET', 'FOOTBALL', 'BADMINTON', 'KABADDI']
-    print("sport")
-    main(sport)
+def professors():
+    professor = ['SUBAJIT', 'RADHA', 'AMITH', 'SRIDHAR', 'NEHA', 'YASWANTH', 'SRINIVAS']
+    print("Professors")
+    main(professor)
 
 
 while True:
