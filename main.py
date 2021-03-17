@@ -277,7 +277,7 @@ def subjects():
 
 
 def professors():
-    professor = ['SUBAJIT', 'RADHA', 'AMITH', 'SRIDHAR', 'NEHA', 'YASWANTH', 'SRINIVAS']
+    professor = ['SUBAJIT', 'SUJITH', 'RADHA', 'AMITH', 'SRIDHAR', 'NEHA', 'YASWANTH', 'SRINIVAS']
     print("Professors")
     main(professor)
 
