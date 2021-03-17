@@ -159,16 +159,7 @@ def main(lst):
     global guessed
     words = lst
     guessed = []
-    if level <= 5:
-        word = random.choice(words[0])
-    elif level <= 10:
-        word = random.choice(words[1])
-    elif level <= 15:
-        word = random.choice(words[2])
-    elif level <= 20:
-        word = random.choice(words[3])
-    elif level <= 25:
-        word = random.choice(words[4])
+    word = random.choice(words)
     while run:
         clock.tick(fps)
 
@@ -206,26 +197,26 @@ def main(lst):
             guessed = []
             for letter in letters:
                 letter[3] = True
-            if level == 26:
+            if level == 6:
                 display_message("You are the CHAMPION")
-            if level <= 5:
-                hangman_status = 1
+            if level == 5:
+                hangman_status = 7
                 draw()
                 main(words)
-            elif level <= 10:
-                hangman_status = 3
-                draw()
-                main(words)
-            elif level <= 15:
-                hangman_status = 5
-                draw()
-                main(words)
-            elif level <= 20:
+            elif level == 4:
                 hangman_status = 6
                 draw()
                 main(words)
-            elif level <= 25:
-                hangman_status = 7
+            elif level == 3:
+                hangman_status = 4
+                draw()
+                main(words)
+            elif level == 2:
+                hangman_status = 2
+                draw()
+                main(words)
+            elif level == 1:
+                hangman_status = 0
                 draw()
                 main(words)
 
@@ -239,34 +230,26 @@ def main(lst):
 
 
 def animals():
-    animal = ['COW', 'DOG', 'CAT', 'PIG', 'FOX', 'LION', 'BIRD', 'BEAR', 'PANDA', 'HORSE',
-              'ZEBRA', 'WHALE', 'TIGER', 'SHARK', 'CHICKEN', 'GIRAFFE', 'PENGUIN', 'HAMSTER', 'CHEETAH', 'OSTRICH',
-              'MEERKAT', 'MONKEY', 'OCTOPUS', 'KITTEN', 'KANGAROO']
+    animal = ['COW', 'LION','HORSE', 'TIGER', 'CHICKEN']
 
     print("animal")
     main(animal)
 
 
 def vehicles():
-    vehicle = ['CAR', 'BUS', 'VAN', 'TAXI', 'SHIP', 'TANK', 'BOAT', 'BIKE', 'TRAM', 'TRAIN',
-              'WAGON', 'COACH', 'PLANE', 'LORRY', 'CYCLE', 'SCOOTER', 'SLEIGH', 'ROCKET', 'CARAVAN', 'TRACTOR',
-              'AIRPLANE', 'MOTORBIKE',   'AMBULANCE', 'FIRE ENGINE',  'SPACESHIP']
+    vehicle = ['CAR', 'BUS', 'TRAIN', 'CYCLE', 'AIRPLANE']
     print("vehicle")
     main(vehicle)
 
 
 def foods():
-    food = ['RICE', 'CHEESE', 'SOUP', 'FISH', 'EGG', 'BREAD', 'NUTS', 'APPLE', 'PASTA', 'PIZZA',
-            'CHIPS', 'CARROT', 'ORANGE', 'PEACH', 'DONUT', 'BANANA',  'COOKIE', 'POTATO', 'TOMATO', 'YOGURT',
-            'ICE CREAM', 'PANCAKE',   'CUCUMBER', 'SWEETCORN', 'SANDWICH']
+    food = ['RICE', 'CHEESE', 'PIZZA', 'ICE CREAM', 'SWEETCORN']
     print("food")
     main(food)
 
 
 def sports():
-    sport = ['RUGBY', 'GOLF', 'KARATE', 'TENNIS', 'CRICKET', 'FOOTBALL', 'NETBALL', 'BASKETBALL', 'SWIMMING',
-              'CURLING', 'RUNNING', 'BADMINTON', 'ARCHERY', 'VOLLEYBALL', 'BOWLING', 'DANCING', 'SKATING',
-              'BASEBALL', 'ROUNDERS', 'BOXING', 'CLIMBING', 'CYCLING', 'FENCING',  'SHOOTING', 'KABADDI']
+    sport = ['TENNIS', 'CRICKET', 'FOOTBALL', 'BADMINTON', 'KABADDI']
     print("sport")
     main(sport)
 
