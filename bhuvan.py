@@ -58,9 +58,9 @@ GREY = (192, 192, 192)
 # game variables
 hangman_status = 0
 level = 1
-LOSING_SOUND = pygame.mixer.Sound("python/project/losing.wav")
-WINNING_SOUND = pygame.mixer.Sound("python/project/winning.wav")
-pygame.mixer.music.load("python/project/drums.wav")
+LOSING_SOUND = pygame.mixer.Sound("C:/Users/jsbhu/OneDrive/Desktop/python-project/losing.wav")
+WINNING_SOUND = pygame.mixer.Sound("C:/Users/jsbhu/OneDrive/Desktop/python-project/winning.wav")
+pygame.mixer.music.load("C:/Users/jsbhu/OneDrive/Desktop/python-project/drums.wav")
 
 
 def hangman():
@@ -155,6 +155,8 @@ def main(lst):
     run = True
     global hangman_status
     global level
+    global word
+    global guessed
     words = lst
     guessed = []
     if level <= 5:
@@ -167,8 +169,6 @@ def main(lst):
         word = random.choice(words[3])
     elif level <= 25:
         word = random.choice(words[4])
-    global word
-    global guessed
     while run:
         clock.tick(fps)
 
