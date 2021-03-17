@@ -30,10 +30,10 @@ TITLE_FONT = pygame.font.SysFont('comicsans', 70)
 
 # game variables
 hangman_status = 0
-# words = [['car', 'bus', 'van', 'taxi', 'ship'], ['tank', 'boat', 'bike', 'tram', 'train'],
-#          ['wagon', 'coach', 'plane', 'lorry', 'lorry'], ['scooter', 'sleigh', 'rocket', 'caravan', 'tractor'],
-#         ['airplane', 'motorbike',   'ambulance', 'fire engine',  'spaceship']]
-words = ['car', 'bus', 'van', 'taxi', 'ship', 'tank', 'boat', 'bike', 'tram', 'train', 'wagon', 'coach', 'plane',
+words = ['CAR', 'BUS', 'VAN', 'TAXI', 'SHIP', 'TANK', 'BOAT', 'BIKE', 'TRAM', 'TRAIN',
+         'WAGON', 'CYCLE', 'PLANE', 'LORRY', 'TRUCK', 'SCOOTER', 'SLEIGH', 'ROCKET', 'CARAVAN', 'TRACTOR',
+         'AIRPLANE', 'MOTORBIKE',   'AMBULANCE', 'FIRE ENGINE',  'SPACESHIP']
+# words = ['car', 'bus', 'van', 'taxi', 'ship', 'tank', 'boat', 'bike', 'tram', 'train', 'wagon', 'coach', 'plane',
          'lorry', 'ring', 'scooter', 'sleigh', 'rocket', 'caravan', 'tractor', 'airplane', 'motorbike',   'ambulance',
          'fire engine',  'spaceship']
 guessed = []
