@@ -19,6 +19,7 @@ lightgrey = (192, 192, 192)
 textBoxSpace = 5
 textBoxNumber = 0
 
+
 def button(word,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -35,6 +36,7 @@ def button(word,x,y,w,h,ic,ac,action=None):
     buttonTextRect = buttonTextSurf.get_rect()
     buttonTextRect.center = ((x+(w/2)), (y+(h/2)))
     screen.blit(buttonTextSurf, buttonTextRect)
+
 
 def endGame():
     global textBoxSpace, textBoxNumber, end, start
