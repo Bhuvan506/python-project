@@ -59,6 +59,7 @@ GREY = (192, 192, 192)
 # game variables
 hangman_status = 0
 level = 1
+score = 0
 LOSING_SOUND = pygame.mixer.Sound("C:/Users/jsbhu/OneDrive/Desktop/python-project/losing.wav")
 WINNING_SOUND = pygame.mixer.Sound("C:/Users/jsbhu/OneDrive/Desktop/python-project/winning.wav")
 pygame.mixer.music.load("C:/Users/jsbhu/OneDrive/Desktop/python-project/drums.wav")
@@ -92,13 +93,16 @@ def hangman():
 def draw():
     win.fill(WHITE)
     global level
+    global score
     # draw title
     text = TITLE_FONT.render("HANGMAN", True, BLACK)
-    name = WORD_FONT.render("level " + str(level), True, BLACK)
-    chances = WORD_FONT.render("chances:" + str(10 - hangman_status), True, BLACK)
+    name = WORD_FONT.render("Level " + str(level), True, BLACK)
+    chances = WORD_FONT.render("Chances " + str(10 - hangman_status), True, BLACK)
+    scores = WORD_FONT.render("Score: " + str(score), True, BLACK)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, 20))
     win.blit(name, (WIDTH / 2 - text.get_width() / 2 + 80, 60))
     win.blit(chances, (WIDTH / 2 - text.get_width() / 2 + 40, 100))
+    win.blit(scores, (WIDTH-text.get_width(), 50))
 
     # draw word
     display_word = ""
