@@ -155,6 +155,7 @@ def display_message(message):
 
 
 def main(lst):
+    start = timer()
     fps = 60
     pygame.mixer.music.play(-1)
     clock = pygame.time.Clock()
@@ -194,6 +195,7 @@ def main(lst):
                 break
 
         if won:
+            end = timer()
             level += 1
             if level == 6:
                 display_message("You WON!")
@@ -202,6 +204,8 @@ def main(lst):
                 pygame.mixer.Sound.play(WINNING_SOUND)
                 pygame.time.delay(6000)
             else:
+                timetaken = end - start
+                display_message("Time taken: " + str(round(timetaken)) + "s")
                 display_message("You WON!")
                 pygame.mixer.music.stop()
                 pygame.mixer.Sound.play(WINNING_SOUND)

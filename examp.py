@@ -41,7 +41,7 @@ def button(word,x,y,w,h,ic,ac,action=None):
 def endGame():
     global textBoxSpace, textBoxNumber, end, start
     end = timer()
-    print("Time it took: ",end - start)
+    print("Time it took: ", end - start)
     timeTaken = (end - start)
     textBoxSpace = 5
     textBoxNumber = 0
