@@ -206,7 +206,7 @@ def main(lst):
             if level == 6:
                 timetaken = end - start
                 display_message("Time taken: " + str(round(timetaken)) + "s")
-                score += 1000 - (round(timetaken)) * 10 - (len(set(word))-len(guessed)) * 100 + level * 50
+                score += 1000 - (round(timetaken)) * 10 + (len(set(word))-len(guessed)) * 100 + level * 50
                 display_message("You WON!")
                 display_message("Your Total Score: " + str(score))
                 display_message("You are the CHAMPION")
@@ -216,7 +216,7 @@ def main(lst):
             else:
                 timetaken = end - start
                 display_message("Time taken: " + str(round(timetaken)) + "s")
-                score += 1000 - (round(timetaken))*10 - (len(set(word))-len(guessed))*100 + level*50
+                score += 1000 - (round(timetaken))*10 + (len(set(word))-len(guessed))*100 + level*50
                 display_message("You WON!")
                 pygame.mixer.music.stop()
                 pygame.mixer.Sound.play(WINNING_SOUND)
