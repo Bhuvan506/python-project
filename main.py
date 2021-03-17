@@ -198,6 +198,8 @@ def main(lst):
             end = timer()
             level += 1
             if level == 6:
+                timetaken = end - start
+                display_message("Time taken: " + str(round(timetaken)) + "s")
                 display_message("You WON!")
                 display_message("You are the CHAMPION")
                 pygame.mixer.music.stop()
