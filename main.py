@@ -127,7 +127,6 @@ def main():
             level += 1
             if level == 4:
                 display_message("You are the CHAMPION")
-                pygame.quit()
             if level == 3:
                 display_message("You WON!")
                 words.remove(word)
@@ -139,15 +138,18 @@ def main():
                 draw()
                 main()
             else:
-                display_message("You WON!")
-                words.remove(word)
-                word= random.choice(words)
-                guessed = []
-                for letter in letters:
-                    letter[3] = True
-                hangman_status = 2
-                draw()
-                main()
+                if level == 4 :
+                    pygame.quit()
+                else:
+                    display_message("You WON!")
+                    words.remove(word)
+                    word= random.choice(words)
+                    guessed = []
+                    for letter in letters:
+                        letter[3] = True
+                    hangman_status = 2
+                    draw()
+                    main()
             
             pygame.quit()
 
