@@ -71,7 +71,7 @@ score = 0
 directory = os.getcwd()
 LOSING_SOUND = pygame.mixer.Sound(directory + "/losing.wav")
 WINNING_SOUND = pygame.mixer.Sound(directory + "/winning.wav")
-CATEGORY_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
+CATEGORY_SOUND = pygame.mixer.Sound(directory + "/intro.wav")
 CORRECT_GUESS_SOUND = pygame.mixer.Sound(directory + "/correct_guess.wav")
 WRONG_GUESS_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
 pygame.mixer.music.load(directory + "/game.wav")
@@ -171,6 +171,7 @@ def display_message(message, colour):
 def main(lst):
     start = timer()
     fps = 60
+    pygame.mixer.Sound.stop(CATEGORY_SOUND)
     pygame.mixer.music.play(-1)
     clock = pygame.time.Clock()
     run = True
