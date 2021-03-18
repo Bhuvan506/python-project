@@ -33,6 +33,7 @@ BLUE = (0, 206, 209)
 PEACH = (255, 218, 185)
 PURPLE = (128, 0, 128)
 RED = (139, 0, 0)
+GREEN = (0, 140, 0)
 
 # button variables
 RADIUS = 23
@@ -107,8 +108,8 @@ def draw():
     # draw title
     text = TITLE_FONT.render("HANGMAN", True, RED)
     name = WORD_FONT.render("Level " + str(level), True, PURPLE)
-    chances = WORD_FONT.render("Chances " + str(10 - hangman_status), True, PURPLE)
-    scores = WORD_FONT.render("Score: " + str(score), True, PURPLE)
+    chances = WORD_FONT.render("Chances -" + str(10 - hangman_status), True, PURPLE)
+    scores = WORD_FONT.render("Score: " + str(score), True, GREEN)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, 20))
     win.blit(name, (WIDTH / 2 - text.get_width() / 2 + 80, 60))
     win.blit(chances, (WIDTH / 2 - text.get_width() / 2 + 40, 100))
