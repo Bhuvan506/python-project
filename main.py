@@ -71,7 +71,7 @@ score = 0
 directory = os.getcwd()
 LOSING_SOUND = pygame.mixer.Sound(directory + "/losing.wav")
 WINNING_SOUND = pygame.mixer.Sound(directory + "/winning.wav")
-CATEGORY_SOUND = pygame.mixer.Sound(directory + "/intro.mp3")
+CATEGORY_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
 CORRECT_GUESS_SOUND = pygame.mixer.Sound(directory + "/correct_guess.wav")
 WRONG_GUESS_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
 pygame.mixer.music.load(directory + "/game.wav")
@@ -159,10 +159,10 @@ def draw():
     pygame.display.update()
 
 
-def display_message(message):
+def display_message(message, colour):
     pygame.time.delay(500)
     win.fill(PEACH)
-    text = END_FONT.render(message, True, BLACK)
+    text = END_FONT.render(message, True, colour)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2))
     pygame.display.update()
     pygame.time.delay(1500)
@@ -225,20 +225,20 @@ def main(lst):
             level += 1
             if level == 6:
                 timetaken = end - start
-                display_message("Time taken: " + str(round(timetaken)) + "s")
+                display_message("Time taken: " + str(round(timetaken)) + "s", BLUE)
                 score += 1000 - (round(timetaken)) * 10 + (len(set(word))-len(guessed)) * 100 + level * 50
-                display_message("You WON!")
+                display_message("You WON!", BLUE)
                 pygame.mixer.music.stop()
                 pygame.mixer.Sound.play(WINNING_SOUND)
-                display_message("Your Total Score: " + str(score))
-                display_message("You are the CHAMPION")
+                display_message("Your Total Score: " + str(score), BLUE)
+                display_message("You are the CHAMPION", BLUE)
                 pygame.time.delay(3000)
                 pygame.mixer.Sound.stop(WINNING_SOUND)
             else:
                 timetaken = end - start
-                display_message("Time taken: " + str(round(timetaken)) + "s")
+                display_message("Time taken: " + str(round(timetaken)) + "s", BLUE)
                 score += 1000 - (round(timetaken))*10 + (len(set(word))-len(guessed))*100 + level*50
-                display_message("You WON!")
+                display_message("You WON!", BLUE)
                 pygame.mixer.music.stop()
                 pygame.mixer.Sound.play(WINNING_SOUND)
                 pygame.time.delay(3000)
@@ -274,9 +274,9 @@ def main(lst):
         if hangman_status == 10:
             pygame.mixer.music.stop()
             pygame.mixer.Sound.play(LOSING_SOUND)
-            display_message("You LOST!")
-            display_message("Correct word is: " + str(word))
-            display_message("Your Total Score: " + str(score))
+            display_message("You LOST!", RED)
+            display_message("Correct word is: " + str(word), RED)
+            display_message("Your Total Score: " + str(score), RED)
             pygame.quit()
 
 
