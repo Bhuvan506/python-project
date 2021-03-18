@@ -12,37 +12,8 @@ pygame.init()
 WIDTH, HEIGHT = 1000, 600
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hangman Game!")
-
-# button variables
-RADIUS = 20
-GAP = 15
-letters = []
-startx = round((WIDTH - (RADIUS * 2 + GAP) * 13) / 2)
-starty = 400
-A = 65
-for i in range(26):
-    x = startx + GAP * 2 + ((RADIUS * 2 + GAP) * (i % 13))
-    y = starty + ((i // 13) * (GAP + RADIUS * 2))
-    letters.append([x, y, chr(A + i), True])
-
-
-def button(word, x, y, w, h, ic, ac, action=None):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-
-    if x+w > mouse[0] > x and y+h > mouse[1] > y:
-        pygame.draw.rect(win, ac, (x, y, w, h))
-        if click[0] == 1 and action is not None:
-            action()
-    else:
-        pygame.draw.rect(win, ic, (x, y, w, h))
-
-    buttonText = pygame.font.Font("freesansbold.ttf", 20)
-    buttonTextSurf = buttonText.render(word, True, WHITE)
-    buttonTextRect = buttonTextSurf.get_rect()
-    buttonTextRect.center = ((x+(w/2)), (y+(h/2)))
-    win.blit(buttonTextSurf, buttonTextRect)
-
+icon = pygame.image.load('hangman_icon.png')
+pygame.display.set_icon(icon)
 
 # fonts
 OPTION_FONT = pygame.font.SysFont('georgia', 25)
@@ -63,6 +34,36 @@ PEACH = (255, 218, 185)
 PURPLE = (128, 0, 128)
 RED = (139, 0, 0)
 
+# button variables
+RADIUS = 23
+GAP = 15
+letters = []
+startx = round((WIDTH - ((RADIUS * 2 + GAP) * 12 + RADIUS*2)) / 2)
+starty = 450
+A = 65
+for i in range(26):
+    x = startx + RADIUS + ((RADIUS * 2 + GAP) * (i % 13))
+    y = starty + ((i // 13) * (GAP + RADIUS * 2))
+    letters.append([x, y, chr(A + i), True])
+
+
+def button(word, x, y, w, h, c1, c2, action=None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    if x+w > mouse[0] > x and y+h > mouse[1] > y:
+        pygame.draw.rect(win, c2, (x, y, w, h))
+        if click[0] == 1 and action is not None:
+            action()
+    else:
+        pygame.draw.rect(win, c1, (x, y, w, h))
+    pygame.mixer.Sound.play(CATEGORY_SOUND)
+    buttonTextSurf = OPTION_FONT.render(word, True, WHITE)
+    buttonTextRect = buttonTextSurf.get_rect()
+    buttonTextRect.center = ((x+(w/2)), (y+(h/2)))
+    win.blit(buttonTextSurf, buttonTextRect)
+
+
 # game variables
 hangman_status = 0
 level = 1
@@ -70,7 +71,10 @@ score = 0
 directory = os.getcwd()
 LOSING_SOUND = pygame.mixer.Sound(directory + "/losing.wav")
 WINNING_SOUND = pygame.mixer.Sound(directory + "/winning.wav")
-pygame.mixer.music.load(directory + "/drums.wav")
+CATEGORY_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
+CORRECT_GUESS_SOUND = pygame.mixer.Sound(directory + "/correct_guess.wav")
+WRONG_GUESS_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
+pygame.mixer.music.load(directory + "/game.wav")
 
 
 def hangman():
@@ -87,10 +91,10 @@ def hangman():
         textRect.center = ((WIDTH / 2), (HEIGHT / 2))
         win.blit(textSurf, textRect)
 
-        button("Team members", 200, 450, 150, 100, BLUE, GREY, members)
-        button("PythonTAs", 600, 450, 150, 100, BLUE, GREY, pythonTAs)
-        button("Subjects", 200, 50, 150, 100, BLUE, GREY, subjects)
-        button("Professors", 600, 50, 150, 100, BLUE, GREY, professors)
+        button("Team members", 200, 450, 200, 100, BLUE, GREY, members)
+        button("PythonTAs", 600, 450, 200, 100, BLUE, GREY, pythonTAs)
+        button("Subjects", 200, 50, 200, 100, BLUE, GREY, subjects)
+        button("Professors", 600, 50, 200, 100, BLUE, GREY, professors)
 
         pygame.display.update()
         clock.tick(FPS)
@@ -124,7 +128,7 @@ def draw():
     for letter in letters:
         x, y, ltr, visible = letter
         if visible:
-            pygame.draw.circle(win, BLACK, (x, y), RADIUS, 3)
+            pygame.draw.circle(win, RED, (x, y), RADIUS, 3)
             text = LETTER_FONT.render(ltr, True, BLACK)
             win.blit(text, (x - text.get_width() / 2, y - text.get_height() / 2))
 
@@ -158,7 +162,7 @@ def draw():
 def display_message(message):
     pygame.time.delay(500)
     win.fill(PEACH)
-    text = WORD_FONT.render(message, True, BLACK)
+    text = END_FONT.render(message, True, BLACK)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2))
     pygame.display.update()
     pygame.time.delay(1500)
@@ -194,8 +198,19 @@ def main(lst):
                         if dis < RADIUS:
                             letter[3] = False
                             guessed.append(ltr)
+                            if ltr in word:
+                                pygame.mixer.music.stop()
+                                pygame.mixer.Sound.play(CORRECT_GUESS_SOUND)
+                                pygame.time.delay(500)
+                                pygame.mixer.Sound.stop(CORRECT_GUESS_SOUND)
+                                pygame.mixer.music.play(-1)
                             if ltr not in word:
                                 hangman_status += 1
+                                pygame.mixer.music.stop()
+                                pygame.mixer.Sound.play(WRONG_GUESS_SOUND)
+                                pygame.time.delay(500)
+                                pygame.mixer.Sound.stop(WRONG_GUESS_SOUND)
+                                pygame.mixer.music.play(-1)
 
         draw()
 
@@ -217,7 +232,8 @@ def main(lst):
                 pygame.mixer.Sound.play(WINNING_SOUND)
                 display_message("Your Total Score: " + str(score))
                 display_message("You are the CHAMPION")
-                pygame.time.delay(6000)
+                pygame.time.delay(3000)
+                pygame.mixer.Sound.stop(WINNING_SOUND)
             else:
                 timetaken = end - start
                 display_message("Time taken: " + str(round(timetaken)) + "s")
@@ -225,7 +241,8 @@ def main(lst):
                 display_message("You WON!")
                 pygame.mixer.music.stop()
                 pygame.mixer.Sound.play(WINNING_SOUND)
-                pygame.time.delay(6000)
+                pygame.time.delay(3000)
+                pygame.mixer.Sound.stop(WINNING_SOUND)
                 words.remove(word)
                 word = random.choice(words)
                 guessed = []
@@ -258,6 +275,7 @@ def main(lst):
             pygame.mixer.music.stop()
             pygame.mixer.Sound.play(LOSING_SOUND)
             display_message("You LOST!")
+            display_message("Correct word is: " + str(word))
             display_message("Your Total Score: " + str(score))
             pygame.quit()
 
@@ -275,7 +293,7 @@ def pythonTAs():
 
 
 def subjects():
-    subject = ['PYTHON', 'DIGITALDESIGN', 'MATHS', 'YOGA', 'ENGLISH']
+    subject = ['PYTHON', 'DIGITALDESIGN', 'MATHS', 'YOGA', 'ENGLISH', 'PHYSICS', 'CHEMISTRY']
     print("Subjects")
     main(subject)
 
