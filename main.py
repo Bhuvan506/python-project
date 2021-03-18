@@ -92,10 +92,10 @@ def hangman():
         textRect.center = ((WIDTH / 2), (HEIGHT / 2))
         win.blit(textSurf, textRect)
 
-        button("Team members", 200, 450, 200, 100, BLUE, GREY, members)
-        button("PythonTAs", 600, 450, 200, 100, BLUE, GREY, pythonTAs)
-        button("Subjects", 200, 50, 200, 100, BLUE, GREY, subjects)
-        button("Professors", 600, 50, 200, 100, BLUE, GREY, professors)
+        button("Food", 200, 450, 200, 100, BLUE, GREY, FOOD)
+        button("Flowers", 600, 450, 200, 100, BLUE, GREY, FLOWER)
+        button("Animals", 200, 50, 200, 100, BLUE, GREY, ANIMALS)
+        button("Sports", 600, 50, 200, 100, BLUE, GREY, SPORTS)
 
         pygame.display.update()
         clock.tick(FPS)
@@ -108,7 +108,7 @@ def draw():
     # draw title
     text = TITLE_FONT.render("HANGMAN", True, RED)
     name = WORD_FONT.render("Level " + str(level), True, PURPLE)
-    chances = WORD_FONT.render("Chances -" + str(10 - hangman_status), True, PURPLE)
+    chances = WORD_FONT.render("Chances " + str(10 - hangman_status), True, PURPLE)
     scores = WORD_FONT.render("Score: " + str(score), True, GREEN)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, 20))
     win.blit(name, (WIDTH / 2 - text.get_width() / 2 + 80, 60))
@@ -236,6 +236,7 @@ def main(lst):
                 display_message("You are the CHAMPION", BLUE)
                 pygame.time.delay(3000)
                 pygame.mixer.Sound.stop(WINNING_SOUND)
+                pygame.quit()
             else:
                 timetaken = end - start
                 display_message("Time taken: " + str(round(timetaken)) + "s", BLUE)
@@ -282,28 +283,28 @@ def main(lst):
             pygame.quit()
 
 
-def members():
-    member = ['MAURYA', 'KEERTHAN', 'BHUVAN', 'OISHI', 'PRASANTH']
-    print("Members in project")
-    main(member)
+def FOOD():
+    food = ['PASTA', 'PIZZA', 'CHOCOLATE', 'COOKIES', 'SANDWICH']
+    print("FOOD")
+    main(food)
 
 
-def pythonTAs():
-    pythonTA = ['PRATEKSHA', 'ADVAIT', 'RAHUL', 'LUBAIANA', 'KESHAV', 'ESHITA']
-    print("PythonTAa")
-    main(pythonTA)
+def FLOWER():
+    flower = ['ROSE', 'LOTUS', 'LILY', 'MARIGOLD', 'DAISY']
+    print("FLOWER")
+    main(flower)
 
 
-def subjects():
-    subject = ['PYTHON', 'DIGITALDESIGN', 'MATHS', 'YOGA', 'ENGLISH', 'PHYSICS', 'CHEMISTRY']
-    print("Subjects")
-    main(subject)
+def ANIMALS():
+    animal = ['TIGER', 'ELEPHANT', 'DOG', 'PANDA', 'CAT']
+    print("ANIMALS")
+    main(animal)
 
 
-def professors():
-    professor = ['SUBAJIT', 'SUJITH', 'RADHA', 'AMITH', 'SRIDHAR', 'NEHA', 'YASHVANTH', 'SRINIVAS', 'PRADEESHA']
-    print("Professors")
-    main(professor)
+def SPORTS():
+    sports = ['CRICKET', 'FOOTBALL', 'RUGBY', 'BASKETBALL', 'SWIMMING']
+    print("SPORTS")
+    main(sports)
 
 
 while True:
