@@ -71,7 +71,7 @@ score = 0
 directory = os.getcwd()
 LOSING_SOUND = pygame.mixer.Sound(directory + "/losing.wav")
 WINNING_SOUND = pygame.mixer.Sound(directory + "/winning.wav")
-CATEGORY_SOUND = pygame.mixer.Sound(directory + "/intro.wav")
+CATEGORY_SOUND = pygame.mixer.Sound(directory + "/intro.mp3")
 CORRECT_GUESS_SOUND = pygame.mixer.Sound(directory + "/correct_guess.wav")
 WRONG_GUESS_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
 pygame.mixer.music.load(directory + "/game.wav")
