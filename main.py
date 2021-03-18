@@ -1,6 +1,4 @@
 import pygame
-from pygame.locals import *
-from timeit import default_timer as timer
 import math
 import sys
 import random
@@ -34,28 +32,36 @@ def button(word, x, y, w, h, ic, ac, action=None):
 
     if x+w > mouse[0] > x and y+h > mouse[1] > y:
         pygame.draw.rect(win, ac, (x, y, w, h))
-        if click[0] == 1 and action != None:
+        if click[0] == 1 and action is not None:
             action()
     else:
         pygame.draw.rect(win, ic, (x, y, w, h))
 
     buttonText = pygame.font.Font("freesansbold.ttf", 20)
-    buttonTextSurf = buttonText.render(word, 1, WHITE)
+    buttonTextSurf = buttonText.render(word, True, WHITE)
     buttonTextRect = buttonTextSurf.get_rect()
     buttonTextRect.center = ((x+(w/2)), (y+(h/2)))
     win.blit(buttonTextSurf, buttonTextRect)
 
 
 # fonts
-LETTER_FONT = pygame.font.SysFont('comicsans', 40)
-WORD_FONT = pygame.font.SysFont('comicsans', 60)
+OPTION_FONT = pygame.font.SysFont('georgia', 25)
+LETTER_FONT = pygame.font.SysFont('arial', 40)
+WORD_FONT = pygame.font.SysFont('arial', 40)
 TITLE_FONT = pygame.font.SysFont('comicsans', 70)
+END_FONT = pygame.font.SysFont('georgia', 50)
 
 
 # colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREY = (192, 192, 192)
+CYAN = (224, 255, 255)
+GAINS = (220, 220, 220)
+BLUE = (0, 206, 209)
+PEACH = (255, 218, 185)
+PURPLE = (128, 0, 128)
+RED = (139, 0, 0)
 
 # game variables
 hangman_status = 0
@@ -74,32 +80,31 @@ def hangman():
                 pygame.quit()
                 sys.exit()
         clock = pygame.time.Clock()
-        win.fill(WHITE)
+        win.fill(PEACH)
 
-        text = pygame.font.Font("freesansbold.ttf", 20)
-        textSurf = text.render("Choose a category", 1, BLACK)
+        textSurf = END_FONT.render("Choose a category", True, BLACK)
         textRect = textSurf.get_rect()
         textRect.center = ((WIDTH / 2), (HEIGHT / 2))
         win.blit(textSurf, textRect)
 
-        button("Team members", 200, 450, 150, 100, BLACK, GREY, members)
-        button("PythonTAs", 600, 450, 150, 100, BLACK, GREY, pythonTAs)
-        button("Subjects", 200, 50, 150, 100, BLACK, GREY, subjects)
-        button("Professors", 600, 50, 150, 100, BLACK, GREY, professors)
+        button("Team members", 200, 450, 150, 100, BLUE, GREY, members)
+        button("PythonTAs", 600, 450, 150, 100, BLUE, GREY, pythonTAs)
+        button("Subjects", 200, 50, 150, 100, BLUE, GREY, subjects)
+        button("Professors", 600, 50, 150, 100, BLUE, GREY, professors)
 
         pygame.display.update()
         clock.tick(FPS)
 
 
 def draw():
-    win.fill(WHITE)
+    win.fill(CYAN)
     global level
     global score
     # draw title
-    text = TITLE_FONT.render("HANGMAN", True, BLACK)
-    name = WORD_FONT.render("Level " + str(level), True, BLACK)
-    chances = WORD_FONT.render("Chances " + str(10 - hangman_status), True, BLACK)
-    scores = WORD_FONT.render("Score: " + str(score), True, BLACK)
+    text = TITLE_FONT.render("HANGMAN", True, RED)
+    name = WORD_FONT.render("Level " + str(level), True, PURPLE)
+    chances = WORD_FONT.render("Chances " + str(10 - hangman_status), True, PURPLE)
+    scores = WORD_FONT.render("Score: " + str(score), True, PURPLE)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, 20))
     win.blit(name, (WIDTH / 2 - text.get_width() / 2 + 80, 60))
     win.blit(chances, (WIDTH / 2 - text.get_width() / 2 + 40, 100))
@@ -152,7 +157,7 @@ def draw():
 
 def display_message(message):
     pygame.time.delay(500)
-    win.fill(WHITE)
+    win.fill(PEACH)
     text = WORD_FONT.render(message, True, BLACK)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2))
     pygame.display.update()
@@ -160,7 +165,6 @@ def display_message(message):
 
 
 def main(lst):
-    wrong_guess = 0
     start = timer()
     fps = 60
     pygame.mixer.music.play(-1)
@@ -265,7 +269,7 @@ def members():
 
 
 def pythonTAs():
-    pythonTA = ['PRATEEKSHA', 'ADVAITH', 'RAHUL', 'LUBIANA', 'KESHAV', 'ESHITHA']
+    pythonTA = ['PRATEKSHA', 'ADVAIT', 'RAHUL', 'LUBAIANA', 'KESHAV', 'ESHITA']
     print("PythonTAa")
     main(pythonTA)
 
@@ -277,7 +281,7 @@ def subjects():
 
 
 def professors():
-    professor = ['SUBAJIT', 'SUJITH', 'RADHA', 'AMITH', 'SRIDHAR', 'NEHA', 'YASWANTH', 'SRINIVAS']
+    professor = ['SUBAJIT', 'SUJITH', 'RADHA', 'AMITH', 'SRIDHAR', 'NEHA', 'YASHVANTH', 'SRINIVAS', 'PRADEESHA']
     print("Professors")
     main(professor)
 
