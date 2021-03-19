@@ -284,25 +284,25 @@ def main(lst):
 
 
 def FOOD():
-    food = ['PASTA', 'PIZZA', 'CHOCOLATE', 'COOKIES', 'SANDWICH']
+    food = ['PASTA', 'PIZZA', 'CHOCOLATE', 'COOKIES', 'SANDWICH', 'RICE', 'BURGER', 'NOODLES', 'ROTI']
     print("FOOD")
     main(food)
 
 
 def FLOWER():
-    flower = ['ROSE', 'LOTUS', 'LILY', 'MARIGOLD', 'DAISY']
+    flower = ['ROSE', 'LOTUS', 'LILY', 'MARIGOLD', 'DAISY', 'TULIP', 'LOTUS', 'SUNFLOWER', 'ORCHID']
     print("FLOWER")
     main(flower)
 
 
 def ANIMALS():
-    animal = ['TIGER', 'ELEPHANT', 'DOG', 'PANDA', 'CAT']
+    animal = ['TIGER', 'ELEPHANT', 'DOG', 'PANDA', 'CAT', 'COW', 'LION', 'MONKEY', 'GORILLA']
     print("ANIMALS")
     main(animal)
 
 
 def SPORTS():
-    sports = ['CRICKET', 'FOOTBALL', 'RUGBY', 'BASKETBALL', 'SWIMMING']
+    sports = ['CRICKET', 'FOOTBALL', 'RUGBY', 'BASKETBALL', 'SWIMMING', 'HOCKEY', 'BADMINTON', 'BASEBALL', 'TENNIS']
     print("SPORTS")
     main(sports)
 
