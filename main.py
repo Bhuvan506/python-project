@@ -47,6 +47,7 @@ for i in range(26):
     letters.append([x, y, chr(A + i), True])
 
 
+# button function
 def button(word, x, y, w, h, c1, c2, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -80,6 +81,8 @@ WRONG_GUESS_SOUND = pygame.mixer.Sound(directory + "/wrong_guess.wav")
 pygame.mixer.music.load(directory + "/game.wav")
 
 
+# Start of the game...
+# Choosing category
 def hangman():
     while True:
         for event in pygame.event.get():
@@ -95,7 +98,7 @@ def hangman():
         win.blit(textSurf, textRect)
 
         button("Food", 200, 450, 200, 100, BLUE, GREY, FOOD)
-        button("Flowers", 600, 450, 200, 100, BLUE, GREY, FLOWER)
+        button("Flowers", 600, 450, 200, 100, BLUE, GREY, FLOWERS)
         button("Animals", 200, 50, 200, 100, BLUE, GREY, ANIMALS)
         button("Sports", 600, 50, 200, 100, BLUE, GREY, SPORTS)
 
@@ -103,6 +106,7 @@ def hangman():
         clock.tick(FPS)
 
 
+# keyboard in game
 def keyboard_buttons():
     for letter in letters:
         x, y, ltr, visible = letter
@@ -112,6 +116,7 @@ def keyboard_buttons():
             win.blit(text, (x-text.get_width()/2, y-text.get_height()/2))
 
 
+# Checking whether guessed letter is in given word
 def word_guess():
     display_word = ""
     for letter in word:
@@ -123,6 +128,7 @@ def word_guess():
     win.blit(text, (400, 200))
 
 
+# Hangman, level, chance and score
 def draw():
     win.fill(CYAN)
     global level
@@ -167,6 +173,7 @@ def draw():
     pygame.display.update()
 
 
+# Function to display message on screen
 def display_message(message, colour):
     pygame.time.delay(500)
     win.fill(PEACH)
@@ -176,6 +183,7 @@ def display_message(message, colour):
     pygame.time.delay(1500)
 
 
+# main control block
 def main(lst):
     start = timer()
     fps = 60
@@ -290,24 +298,28 @@ def main(lst):
             pygame.quit()
 
 
+# CATEGORY: FOOD
 def FOOD():
     food = ['PASTA', 'PIZZA', 'CHOCOLATE', 'COOKIES', 'SANDWICH', 'RICE', 'BURGER', 'NOODLES', 'PANIPURI']
     print("FOOD")
     main(food)
 
 
-def FLOWER():
+# CATEGORY: FLOWERS
+def FLOWERS():
     flower = ['ROSE', 'LOTUS', 'LILY', 'MARIGOLD', 'DAISY', 'TULIP', 'LOTUS', 'SUNFLOWER', 'ORCHID']
     print("FLOWER")
     main(flower)
 
 
+# CATEGORY: ANIMALS
 def ANIMALS():
     animal = ['TIGER', 'ELEPHANT', 'DOG', 'PANDA', 'CAT', 'COW', 'LION', 'MONKEY', 'GORILLA']
     print("ANIMALS")
     main(animal)
 
 
+# CATEGORY: SPORTS
 def SPORTS():
     sports = ['CRICKET', 'FOOTBALL', 'RUGBY', 'BASKETBALL', 'SWIMMING', 'HOCKEY', 'BADMINTON', 'BASEBALL', 'TENNIS']
     print("SPORTS")
