@@ -22,7 +22,6 @@ WORD_FONT = pygame.font.SysFont('arial', 40)
 TITLE_FONT = pygame.font.SysFont('comicsans', 70)
 END_FONT = pygame.font.SysFont('georgia', 50)
 
-
 # colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -69,6 +68,9 @@ def button(word, x, y, w, h, c1, c2, action=None):
 hangman_status = 0
 level = 1
 score = 0
+
+
+# music
 directory = os.getcwd()
 LOSING_SOUND = pygame.mixer.Sound(directory + "/losing.wav")
 WINNING_SOUND = pygame.mixer.Sound(directory + "/winning.wav")
@@ -101,6 +103,26 @@ def hangman():
         clock.tick(FPS)
 
 
+def keyboard_buttons():
+    for letter in letters:
+        x, y, ltr, visible = letter
+        if visible:
+            pygame.draw.circle(win, (0, 0, 0), (x, y), RADIUS, 3)
+            text = LETTER_FONT.render(ltr, True, (0, 0, 0))
+            win.blit(text, (x-text.get_width()/2, y-text.get_height()/2))
+
+
+def word_guess():
+    display_word = ""
+    for letter in word:
+        if letter in guessed:
+            display_word += letter + ""
+        else:
+            display_word += "_ "
+    text = WORD_FONT.render(display_word, True, (0, 0, 0))
+    win.blit(text, (400, 200))
+
+
 def draw():
     win.fill(CYAN)
     global level
@@ -108,30 +130,15 @@ def draw():
     # draw title
     text = TITLE_FONT.render("HANGMAN", True, RED)
     name = WORD_FONT.render("Level " + str(level), True, PURPLE)
-    chances = WORD_FONT.render("Chances " + str(10 - hangman_status), True, PURPLE)
+    chances = WORD_FONT.render("Chances: " + str(10 - hangman_status), True, PURPLE)
     scores = WORD_FONT.render("Score: " + str(score), True, GREEN)
     win.blit(text, (WIDTH / 2 - text.get_width() / 2, 20))
     win.blit(name, (WIDTH / 2 - text.get_width() / 2 + 80, 60))
     win.blit(chances, (WIDTH / 2 - text.get_width() / 2 + 40, 100))
     win.blit(scores, (WIDTH-text.get_width(), 50))
 
-    # draw word
-    display_word = ""
-    for letter in word:
-        if letter in guessed:
-            display_word += letter + " "
-        else:
-            display_word += "_ "
-    text = WORD_FONT.render(display_word, True, BLACK)
-    win.blit(text, (600, 200))
-
-    # draw buttons
-    for letter in letters:
-        x, y, ltr, visible = letter
-        if visible:
-            pygame.draw.circle(win, RED, (x, y), RADIUS, 3)
-            text = LETTER_FONT.render(ltr, True, BLACK)
-            win.blit(text, (x - text.get_width() / 2, y - text.get_height() / 2))
+    word_guess()
+    keyboard_buttons()
 
     pygame.draw.rect(win, BLACK, [100, 350, 100, 10])
     pygame.draw.rect(win, BLACK, [200, 350, 100, 10])
@@ -284,7 +291,7 @@ def main(lst):
 
 
 def FOOD():
-    food = ['PASTA', 'PIZZA', 'CHOCOLATE', 'COOKIES', 'SANDWICH', 'RICE', 'BURGER', 'NOODLES', 'ROTI']
+    food = ['PASTA', 'PIZZA', 'CHOCOLATE', 'COOKIES', 'SANDWICH', 'RICE', 'BURGER', 'NOODLES', 'PANIPURI']
     print("FOOD")
     main(food)
 
